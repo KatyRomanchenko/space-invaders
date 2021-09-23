@@ -1,8 +1,12 @@
 import pygame
 import os
-import time
+#import time
 import random
 pygame.font.init()
+
+#Разбить всё по разным файлам
+#Разобраться с константой COUNTDOWN
+#"Import time??"
 
 WIDTH, HEIGHT = 700, 700
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -27,7 +31,7 @@ BG = pygame.transform.scale(pygame.image.load(os.path.join("Stuff", "Background.
 
 class Laser:
     def __init__(self, x, y, img):
-        self.x = x
+        self.x = x+30
         self.y = y
         self.img = img
         self.mask = pygame.mask.from_surface(self.img)
@@ -138,10 +142,9 @@ class Enemy(Ship):
 
     def shoot(self):
         if self.cool_down_counter == 0:
-            laser = Laser(self.x-20, self.y, self.laser_img)
+            laser = Laser(self.x+16, self.y, self.laser_img)##self.x+18
             self.lasers.append(laser)
             self.cool_down_counter = 1
-
 
 def collide(obj1, obj2):
     offset_x = obj2.x - obj1.x
